@@ -7,6 +7,15 @@ using UnityEngine.EventSystems;
 
 public class InvSlot : MonoBehaviour, IPointerClickHandler
 {
+    public string itemNameOrg;
+    public string itemName;
+    public Sprite curItem;
+    public int itemAmount;
+
+    public bool log;
+    public bool ore;
+    public bool crop;
+
     public void OnPointerClick(PointerEventData pointer)
     {
         switch (transform.parent.GetComponent<CurInvType>().curInvType)
@@ -23,18 +32,18 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
             case 3:
                 ChooseResource(3);
                 break;
+            case 4:
+                ChooseResource(4);
+                break;
         }
         //Debug.Log(pointer.pointerEnter.name);
     }
 
     void ClickBase()
     {
-        if(curItem != null)
-        {
-            itemAmount--;
-            transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itemAmount.ToString();
-        }
-        
+        itemAmount--;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itemAmount.ToString();
+
 
         // Remove Visuals
 
@@ -61,12 +70,25 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
         
     }
 
-    void ChooseResource(int resType) // 1 = Farm, 2 = Sägewerk, 3 = Schmiede
+    void ChooseResource(int resType) // 1 = Farm, 2 = Sägewerk, 3 = Schmiede, 4 = Küche
     {
         switch (resType)
         {
             case 1:
                 FarmRes();
+                break;
+
+            case 2:
+                Debug.Log("use Sawmill");
+                CutWood();
+                break;
+
+            case 3:
+                Debug.Log("use Forge");
+                break;
+
+            case 4:
+                Cook();
                 break;
         }
         
@@ -89,10 +111,22 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
             Debug.Log("Occupied");
     }
 
-    public string itemNameOrg;
-    public string itemName;
-    public Sprite curItem;
-    public int itemAmount;
+    void Cook()
+    {
 
-    public bool crop;
+
+        Debug.Log("Cook");
+    }
+
+    void CutWood()
+    {
+        if(log)
+        {
+
+        }
+    }
+
+
+
+    
 }

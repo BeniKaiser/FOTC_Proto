@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public InputManager Inp;
     public PManager Player;
+    public UIManager UIMng;
     public DayNightCycle DNC;
 
     bool playerMoves;
@@ -78,26 +79,47 @@ public class GameManager : MonoBehaviour
     {
         if(curInteractable != null)
         {
-            if (curInteractable.CompareTag("Tree") && Player.Inv.quickSlotIndex == 0)
+
+            switch (curInteractable.tag)
             {
-                DamageResource(curInteractable);
-            }
-            else if (curInteractable.CompareTag("Rock") && Player.Inv.quickSlotIndex == 1)
-            {
-                DamageResource(curInteractable);
-            }
-            else if(curInteractable.CompareTag("Crop") && Player.Inv.quickSlotIndex == 2)
-            {
-                if(curInteractable.GetComponent<CropObject>().ripe)
+                case "Tree":
+                    if(Player.Inv.quickSlotIndex == 0)
+                        DamageResource(curInteractable);
+                    break;
+
+                case "Rock":
+                    if(Player.Inv.quickSlotIndex == 1)
+                        DamageResource(curInteractable);
+                    break;
+
+                case "Crop":
+                    if(Player.Inv.quickSlotIndex == 2)
+                        if (curInteractable.GetComponent<CropObject>().ripe)
+                            CollectResource(curInteractable);
+                    break;
+
+                case "Collectable":
                     CollectResource(curInteractable);
-            }
-            else if(curInteractable.CompareTag("Collectable"))
-            {
-                CollectResource(curInteractable);
-            }
-            else if (curInteractable.CompareTag("Farm"))
-            {
-                InventoryVisibility(1);
+                    break;
+
+                case "Farm":
+                    InventoryVisibility(1);
+                    break;
+
+                case "Sawmill":
+                    InventoryVisibility(2);
+                    UIMng.sawmill_UI.SetActive(true);
+                    break;
+
+                case "Forge":
+                    InventoryVisibility(3);
+                    UIMng.forge_UI.SetActive(true);
+                    break;
+
+                case "Kitchen":
+                    InventoryVisibility(4);
+                    UIMng.cooking_UI.SetActive(true);
+                    break;
             }
         }
         
@@ -157,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void InventoryVisibility(int invUse) // 0 = normal InvOpen, 1 = Farm, 2 = Sägewerk, 3 = Schmiede
+    void InventoryVisibility(int invUse) // 0 = normal InvOpen, 1 = Farm, 2 = Sägewerk, 3 = Schmiede, 4 = Kitchen
     {
         switch (invUse)
         {
@@ -172,6 +194,10 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 InvUI.GetComponent<CurInvType>().curInvType = 3;
+                break;
+            case 4:
+                InvUI.GetComponent<CurInvType>().curInvType = 4;
+
                 break;
         }
 

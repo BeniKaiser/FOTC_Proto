@@ -11,6 +11,9 @@ TagManager:
   - Crop
   - Building
   - Farm
+  - Kitchen
+  - Sawmill
+  - Forge
   layers:
   - Default
   - TransparentFX
