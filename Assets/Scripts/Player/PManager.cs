@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class PManager : MonoBehaviour
 {
-    public static PManager acc;
-
     public PMove Move;
-    public PInventory Inv;
+    public PCam Cam;
+    public PJump jump;
     public PCollision Col;
-    public CamMove Cam;
+
     public Rigidbody rb;
 
-    private void Awake()
-    {
-        acc = this;
-    }
+    
 }

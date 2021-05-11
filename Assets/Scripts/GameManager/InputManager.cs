@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-
-    public string KeyboardInput()
-    {
-        string keyInput = Input.inputString.ToUpper();
-        return keyInput;
-    }
-
-    public Vector2 MoveInput()
+    public Vector2 MovementInput()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        Debug.Log(moveInput);
         return moveInput;
     }
 
-    public Vector2 MouseInput()
+    public Vector2 CamInput()
     {
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        return mouseInput;
+        Vector2 camInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        return camInput;
     }
 
-    public int ScrollInput()
+    public string LetterInput()
     {
-        int scrollInput = (int)Input.mouseScrollDelta.y;
-        return scrollInput;
+        string keyInput = Input.inputString.ToUpper();
+        return keyInput;
     }
 }
