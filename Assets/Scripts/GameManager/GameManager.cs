@@ -2,28 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum playerState {normal, inInv }
 public class GameManager : MonoBehaviour
 {
-    public PManager PMng;
-    public InputManager Inp;
+    public static GameManager acc;
+    public playerState curState;
 
-    public GameObject currentObject;
+    public PManager PM;
+    public InputManager I;
+    public GameLogic GL;
+    public UILogic UIL;
 
-    
-    void Start()
+    public GameObject curObject;
+
+    private void Awake()
     {
-        
+        acc = this;
     }
 
     void Update()
     {
-        PMng.rb.angularVelocity = Vector3.zero;
+        PM.rb.angularVelocity = Vector3.zero;
 
         // Set Current Object
-        currentObject = PMng.Col.CurrentObject();
+        curObject = PM.Col.CurrentObject();
 
         // CamMovement
-        PMng.Cam.LookAround(Inp.CamInput());
+        PM.Cam.LookAround(I.CamInput());
+
+        if(curObject != null)
+        {
+            GL.InteractWithCurObject(curObject);
+        }
 
     }
 
@@ -31,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
 
         //Player Movement
-        PMng.Move.MovePlayer(PMng.rb, Inp.MovementInput());
+        PM.Move.MovePlayer(PM.rb, I.MovementInput());
     }
 
     

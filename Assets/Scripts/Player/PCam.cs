@@ -12,8 +12,8 @@ public class PCam : MonoBehaviour
         if(mouseInput.magnitude != 0)
         {
             Vector2 mouseOutput = mouseInput * mouseSensitivity * Time.deltaTime;
-            cam.Rotate(new Vector3(-mouseInput.y, 0f, 0f));
-            transform.Rotate(new Vector3(0f, mouseInput.x, 0f));
+            cam.Rotate(new Vector3(-mouseOutput.y, 0f, 0f));
+            transform.Rotate(new Vector3(0f, mouseOutput.x, 0f));
         }
     }
 }

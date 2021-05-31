@@ -22,4 +22,6 @@ public class InputManager : MonoBehaviour
         string keyInput = Input.inputString.ToUpper();
         return keyInput;
     }
+
+    
 }
