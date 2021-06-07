@@ -4,16 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tree
-  - Rock
-  - Item
-  - Collectable
   - Crop
-  - Building
-  - Farm
   - Kitchen
   - Sawmill
   - Forge
+  - Wood
+  - Stone
+  - Seed
+  - Processed
   layers:
   - Default
   - TransparentFX

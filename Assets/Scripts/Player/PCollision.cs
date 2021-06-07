@@ -22,6 +22,16 @@ public class PCollision : MonoBehaviour
         return null;
     }
 
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.GetComponent<DropProperties>() != null)
+        {
+            GameManager.acc.GL.CollectObject(col.gameObject);
+            Destroy(col.gameObject);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(transform.position, GetComponent<PCam>().cam.forward * rayLength);
