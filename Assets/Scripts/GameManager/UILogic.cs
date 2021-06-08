@@ -13,9 +13,9 @@ public class UILogic : MonoBehaviour
 
     public int midIndex;
 
-    private void Awake()
+    private void Start()
     {
-
+        ShowNearTools();
     }
 
 

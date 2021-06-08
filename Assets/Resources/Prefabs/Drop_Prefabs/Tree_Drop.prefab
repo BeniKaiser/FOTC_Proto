@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
-    item_name: normal_Wood
+    item_name: Tree_Drop
     curItem_type: Wood
     refinded_Item_Name: Plank
+    refined: 0
     item_Spr: {fileID: 21300000, guid: 460b27fbed1479844b18325b038afa7c, type: 3}
 --- !u!54 &1644049977846934467
 Rigidbody:

@@ -34,41 +34,42 @@ public class InventoryManager : MonoBehaviour
     void AddItem(int invIndex, Item invAdd)
     {
         // Check if object exists
-        Debug.LogError("Items Fall Down Sometimes!!");
         
 
         for (int i = 0; i < inventories[invIndex].transform.GetChild(0).childCount; i++)
         {
-
-
-            if (inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name == "")
+            if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount == 0)
             {
                 inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem = invAdd;
                 inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount = 1;
 
                 //Visuals
-                inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = 
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_Spr;
-                inventories[invIndex].transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = 
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount.ToString();
-                break;
+                UpdateVisuals(inventories[invIndex].transform.GetChild(0).GetChild(i).gameObject, invAdd);
 
+                break;
             }
-            else if (inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name != "")
-                if (inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name == invAdd.item_name)
+            else if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount > 0)
+            {
+                if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name == invAdd.item_name)
                 {
                     inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount++;
 
                     // Visuals
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text =
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount.ToString();
+                    UpdateVisuals(inventories[invIndex].transform.GetChild(0).GetChild(i).gameObject, invAdd);
                     break;
                 }
-
-
+            }
+            
         }
+
         
-        
+
+    }
+
+    void UpdateVisuals(GameObject invSlot, Item invAdd)
+    {
+        invSlot.GetComponent<Image>().sprite = invAdd.item_Spr;
+        invSlot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = invSlot.GetComponent<InvSlot>().amount.ToString();
     }
 
 

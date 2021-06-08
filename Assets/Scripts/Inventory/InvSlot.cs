@@ -13,50 +13,61 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData pointer)
     {
-        if (curItem.refinded_Item_Name != "" && amount > 0)
+        if (amount > 0)
         {
             
             switch (GameManager.acc.curState)
             {
 
                 case playerState.atKitchen:
-                    if (curItem.curItem_type == "Crop")
-                    {
-                        GameObject g = Resources.Load<GameObject>("Prefabs/Processed_Prefabs/" + curItem.refinded_Item_Name);
-                        Instantiate(g, GameManager.acc.curObject.transform.position + new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-2f, 2f)), Quaternion.identity);
-                        print("Spawn Obj");
-                    }
+                    SpawnRefinedObj("Crop");
                     break;
 
                 case playerState.atSawmill:
-                    if (curItem.curItem_type == "Wood")
-                    {
-
-                        GameObject g = Resources.Load<GameObject>("Prefabs/Processed_Prefabs/" + curItem.refinded_Item_Name);
-                        Instantiate(g, GameManager.acc.curObject.transform.position + new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-2f, 2f)), Quaternion.identity);
-                        print("Spawn Obj");
-                    }
+                    SpawnRefinedObj("Wood");
                     break;
 
                 case playerState.atForge:
-                    if (curItem.curItem_type == "Stone")
-                    {
-                        GameObject g = Resources.Load<GameObject>("Prefabs/Processed_Prefabs/" + curItem.refinded_Item_Name);
-                        Instantiate(g, GameManager.acc.curObject.transform.position + new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-2f, 2f)), Quaternion.identity);
-                        print("Spawn Obj");
-                    }
+                    SpawnRefinedObj("Stone");
+                    break;
+
+                case playerState.inInv:
+                    DropItem();
                     break;
 
             }
-
-            amount--;
-            transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
-            if (amount == 0)
-                ResetSlot();
+            
         }
         else
             print("nothing to Refine");
 
+    }
+
+    void DropItem()
+    {
+        GameObject g = Resources.Load<GameObject>("Prefabs/Drop_Prefabs/" + curItem.item_name);
+        Instantiate(g, GameManager.acc.curObject.transform.position + PManager.player.transform.forward * 2f, Quaternion.identity);
+        amount--;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
+
+        if (amount == 0)
+            ResetSlot();
+    }
+
+    void SpawnRefinedObj(string itemType)
+    {
+        if (curItem.curItem_type == itemType)
+        {
+
+            GameObject g = Resources.Load<GameObject>("Prefabs/Processed_Prefabs/" + curItem.refinded_Item_Name);
+            Instantiate(g, GameManager.acc.curObject.transform.position + new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-2f, 2f)), Quaternion.identity);
+
+            amount--;
+            transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
+
+            if (amount == 0)
+                ResetSlot();
+        }
     }
 
     void ResetSlot()

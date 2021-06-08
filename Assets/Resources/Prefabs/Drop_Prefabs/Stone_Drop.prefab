@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
-    item_name: normal_Stone
+    item_name: Stone_Drop
     curItem_type: Stone
     refinded_Item_Name: Iron
+    refined: 0
     item_Spr: {fileID: 21300000, guid: 2b9737682e083644fa86f5a61f863e1e, type: 3}
 --- !u!54 &828619996622117979
 Rigidbody:

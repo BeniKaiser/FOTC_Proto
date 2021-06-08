@@ -12,6 +12,8 @@ TagManager:
   - Stone
   - Seed
   - Processed
+  - Shop
+  - Quest
   layers:
   - Default
   - TransparentFX
