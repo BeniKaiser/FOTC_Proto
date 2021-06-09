@@ -38,21 +38,21 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < inventories[invIndex].transform.GetChild(0).childCount; i++)
         {
-            if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount == 0)
+            if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount == 0)
             {
                 inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem = invAdd;
-                inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount = 1;
+                inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount = 1;
 
                 //Visuals
                 UpdateVisuals(inventories[invIndex].transform.GetChild(0).GetChild(i).gameObject, invAdd);
 
                 break;
             }
-            else if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount > 0)
+            else if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount > 0)
             {
                 if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name == invAdd.item_name)
                 {
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().amount++;
+                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount++;
 
                     // Visuals
                     UpdateVisuals(inventories[invIndex].transform.GetChild(0).GetChild(i).gameObject, invAdd);
@@ -69,7 +69,7 @@ public class InventoryManager : MonoBehaviour
     void UpdateVisuals(GameObject invSlot, Item invAdd)
     {
         invSlot.GetComponent<Image>().sprite = invAdd.item_Spr;
-        invSlot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = invSlot.GetComponent<InvSlot>().amount.ToString();
+        invSlot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = invSlot.GetComponent<InvSlot>().curItem.amount.ToString();
     }
 
 

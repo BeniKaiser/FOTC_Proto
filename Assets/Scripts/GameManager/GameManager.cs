@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum playerState {normal, inInv, atKitchen, atSawmill, atForge }
+public enum playerState {normal, inInv, atKitchen, atSawmill, atForge, inShop }
 public class GameManager : MonoBehaviour
 {
 

@@ -65,22 +65,28 @@ public class GameLogic : MonoBehaviour
     {
         if (curObject.tag == GameManager.acc.UIL.tools[GameManager.acc.UIL.midIndex].tag)
         {
-            if(curObject.CompareTag("Crop") && !curObject.GetComponent<CropProperties>().ripe)
+            if (curObject.GetComponent<ResourcePropertie>() != null)
             {
-                print("not Ripe Yet");
+                if (curObject.CompareTag("Crop") && !curObject.GetComponent<CropProperties>().ripe)
+                {
+                    print("not Ripe Yet");
+                }
+                else
+                {
+                    if (curObject.GetComponent<ResourcePropertie>().durability > 0)
+                    {
+                        curObject.GetComponent<ResourcePropertie>().durability--;
+                    }
+                    else if (curObject.GetComponent<ResourcePropertie>().durability == 0)
+                    {
+                        Instantiate(curObject.GetComponent<ResourcePropertie>().drop, curObject.transform.position + new Vector3(Random.Range(-2, 2), 0f, Random.Range(-2, 2)), Quaternion.identity);
+                        Destroy(curObject);
+                    }
+                }
             }
             else
-            {
-                if (curObject.GetComponent<ResourcePropertie>().durability > 0)
-                {
-                    curObject.GetComponent<ResourcePropertie>().durability--;
-                }
-                else if (curObject.GetComponent<ResourcePropertie>().durability == 0)
-                {
-                    Instantiate(curObject.GetComponent<ResourcePropertie>().drop, curObject.transform.position + new Vector3(Random.Range(-2, 2), 0f, Random.Range(-2, 2)), Quaternion.identity);
-                    Destroy(curObject);
-                }
-            }
+                print("wtf are you doing??");
+            
             
         }
         else

@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
+    amount: 0
     item_name: Bread
+    resource_Folder: Processed_Prefabs
     curItem_type: 
     refinded_Item_Name: 
     refined: 1

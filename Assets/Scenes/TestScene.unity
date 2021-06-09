@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14211625, g: 0.1563409, b: 0.15434629, a: 1}
+  m_IndirectSpecularColor: {r: 0.14211589, g: 0.15634057, b: 0.15434591, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -604,7 +604,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21566
+  m_Name: pb_Mesh15960
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5461,6 +5461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19bfc291a6c50749b70042f9708359a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   Move: {fileID: 1791568887}
   Cam: {fileID: 1791568886}
   jump: {fileID: 1791568885}

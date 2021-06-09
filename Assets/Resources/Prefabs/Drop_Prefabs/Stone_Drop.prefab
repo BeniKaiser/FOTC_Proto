@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
+    amount: 0
     item_name: Stone_Drop
+    resource_Folder: Drop_Prefabs
     curItem_type: Stone
     refinded_Item_Name: Iron
     refined: 0
