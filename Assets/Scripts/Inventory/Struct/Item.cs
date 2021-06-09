@@ -11,7 +11,9 @@ public struct Item
     public string resource_Folder;
     public string curItem_type;
     public string refinded_Item_Name;
-    public bool refined;
     public Sprite item_Spr;
+    public bool refined;
+
+    public int item_worth;
 
 }

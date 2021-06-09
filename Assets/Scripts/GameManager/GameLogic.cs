@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameLogic : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameLogic : MonoBehaviour
 
     public int[] tools; // 0 = axe, 1 = Pickaxe, 2 = hoe
     public GameObject activeFields;
+    public static int pMoney;
+    public TextMeshProUGUI pMoney_txt;
 
     public void CollectObject(GameObject curObject)
     {
@@ -35,6 +38,11 @@ public class GameLogic : MonoBehaviour
 
     }
 
+    public void ManageMoney()
+    {
+        pMoney_txt.text = pMoney.ToString();
+    }
+
     public void Interaction(GameObject curObject)
     {
         switch (curObject.tag)
@@ -55,6 +63,13 @@ public class GameLogic : MonoBehaviour
 
             case "Forge":
                 GameManager.acc.UIL.InventoryHandling(3);
+                break;
+
+            case "Shop":
+                GameManager.acc.UIL.InventoryHandling(4);
+                break;
+
+            case "Quest":
                 break;
         }
 

@@ -131,5 +131,6 @@ MonoBehaviour:
     resource_Folder: Processed_Prefabs
     curItem_type: 
     refinded_Item_Name: 
-    refined: 1
     item_Spr: {fileID: -8377276120534325534, guid: 9d4cf4444ffe2444db8ba284177537ee, type: 3}
+    refined: 1
+    item_worth: 2

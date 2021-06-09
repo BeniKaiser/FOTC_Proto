@@ -26,7 +26,7 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
     public void DropItem()
     {
         GameObject g = Resources.Load<GameObject>("Prefabs/" + curItem.resource_Folder + "/" + curItem.item_name);
-        Instantiate(g, GameManager.acc.PM.player.transform.position + GameManager.acc.PM.player.transform.forward * 2f, Quaternion.identity);
+        Instantiate(g, PManager.player.transform.position + PManager.player.transform.forward * 2f, Quaternion.identity);
         curItem.amount--;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curItem.amount.ToString();
 
@@ -49,17 +49,40 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
 
     public void Sell1Item()
     {
+        if (curItem.refined)
+        {
+            print("uuh shiny");
+            curItem.amount--;
+            
+            GameLogic.pMoney += curItem.item_worth;
+        }
+        else
+            print("keep your garbage pesant");
 
-
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curItem.amount.ToString();
         ResetSlotCheck();
     }
 
     public void SellAllItems()
     {
+        if (curItem.refined)
+        {
+            print("uuh super shiny");
 
+            for (int i = 0; i < curItem.amount; i++)
+            {
 
+                print(i);
+                GameLogic.pMoney += curItem.item_worth;
+            }
+        }
+        else
+            print("keep your garbage pesant");
+
+        curItem.amount = 0;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curItem.amount.ToString();
         ResetSlotCheck();
-        CloseButtons();
+
     }
 
     public void CloseButtons()

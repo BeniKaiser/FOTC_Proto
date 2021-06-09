@@ -4156,6 +4156,7 @@ MonoBehaviour:
   IM: {fileID: 989268143}
   tools: 
   activeFields: {fileID: 854731367}
+  pMoney_txt: {fileID: 1855285797}
 --- !u!114 &989268143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5461,7 +5462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19bfc291a6c50749b70042f9708359a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   Move: {fileID: 1791568887}
   Cam: {fileID: 1791568886}
   jump: {fileID: 1791568885}

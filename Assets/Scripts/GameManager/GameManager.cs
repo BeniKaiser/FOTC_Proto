@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum playerState {normal, inInv, atKitchen, atSawmill, atForge, inShop }
+public enum playerState {normal, inInv, atKitchen, atSawmill, atForge, inShop, atQuestGiver }
 public class GameManager : MonoBehaviour
 {
 
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
             UIL.ToolRotation((int)I.MouseScroll());
 
         PlayerStatics();
+        GL.ManageMoney();
 
         switch (curState)
         {
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             case playerState.inInv:
 
                 InputToOutputInventory();
+                UIL.FlipDirection(I.LetterInput());
 
                 break;
 
@@ -73,6 +75,11 @@ public class GameManager : MonoBehaviour
 
             case playerState.atForge:
                 InputToOutputInventory();
+                break;
+
+            case playerState.inShop:
+                InputToOutputInventory();
+                UIL.FlipDirection(I.LetterInput());
                 break;
 
         }
@@ -116,9 +123,7 @@ public class GameManager : MonoBehaviour
                 UIL.InventoryHandling(0);
                 break;
         }
-
-        if(curState == playerState.inInv)
-            UIL.FlipDirection(I.LetterInput());
+            
     }
 
 }

@@ -51,6 +51,11 @@ public class UILogic : MonoBehaviour
                         GameManager.acc.curState = playerState.atForge;
                         invPages.transform.Find("Rocks").SetAsLastSibling();
                         break;
+
+                    case 4:
+                        GameManager.acc.curState = playerState.inShop;
+                        break;
+
                 }
                 inventory.SetActive(true);
                 GameManager.acc.CursorState(CursorLockMode.Confined, true);
@@ -64,11 +69,11 @@ public class UILogic : MonoBehaviour
     {
         switch (letterInput)
         {
-            case "Q":
+            case "E":
                 invPages.transform.GetChild(0).GetComponent<InventoryManager>().FlipToPage("b");
                 break;
 
-            case "E":
+            case "Q":
                 invPages.transform.GetChild(invPages.transform.childCount-1).GetComponent<InventoryManager>().FlipToPage("f");
                 break;
         }
