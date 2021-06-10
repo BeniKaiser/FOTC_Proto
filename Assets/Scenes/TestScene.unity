@@ -4299,7 +4299,7 @@ GameObject:
   - component: {fileID: 749350913}
   - component: {fileID: 749350912}
   m_Layer: 5
-  m_Name: Obj_Name (1)
+  m_Name: Obj_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5150,6 +5150,7 @@ MonoBehaviour:
   curState: 0
   PM: {fileID: 1791568888}
   I: {fileID: 989268140}
+  IM: {fileID: 989268143}
   GL: {fileID: 989268142}
   UIL: {fileID: 989268141}
   DNM: {fileID: 989268144}
@@ -5209,6 +5210,8 @@ MonoBehaviour:
   inventory: {fileID: 1974659100}
   buyInventory: {fileID: 1607637527}
   shopOptions: {fileID: 266143718}
+  itemName: {fileID: 1001980753}
+  itemValue: {fileID: 749350912}
   invPages: {fileID: 988959823}
   tools:
   - {fileID: 133449143}
