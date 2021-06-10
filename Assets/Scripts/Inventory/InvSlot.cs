@@ -71,8 +71,6 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
 
             for (int i = 0; i < curItem.amount; i++)
             {
-
-                print(i);
                 GameLogic.pMoney += curItem.item_worth;
             }
         }
