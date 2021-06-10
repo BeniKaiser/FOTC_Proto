@@ -6,38 +6,27 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager acc;
+
     public GameObject[] inventories; // 0 = Wood, 1 = Rocks, 2 = Crops, 3 = Seeds
+
+    private void Awake()
+    {
+        acc = this;
+    }
 
     public void AddToInventory(int invType, GameObject invAdd)
     {
-
-        switch (invType)
-        {
-            case 0:
-                AddItem(invType, invAdd.GetComponent<DropProperties>().dropItem);
-                break;
-                
-            case 1:
-                AddItem(invType, invAdd.GetComponent<DropProperties>().dropItem);
-                break;
-
-            case 2:
-                AddItem(invType, invAdd.GetComponent<DropProperties>().dropItem);
-                break;
-
-            case 3:
-                AddItem(invType, invAdd.GetComponent<DropProperties>().dropItem);
-                break;
-        }
+        AddItem(invType, invAdd.GetComponent<DropProperties>().dropItem);
     }
 
-    void AddItem(int invIndex, Item invAdd)
+    public void AddItem(int invIndex, Item invAdd)
     {
         // Check if object exists
-        
 
         for (int i = 0; i < inventories[invIndex].transform.GetChild(0).childCount; i++)
         {
+            print(i);
             if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount == 0)
             {
                 inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem = invAdd;
@@ -52,7 +41,7 @@ public class InventoryManager : MonoBehaviour
             {
                 if(inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.item_name == invAdd.item_name)
                 {
-                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount++;
+                    inventories[invIndex].transform.GetChild(0).GetChild(i).GetComponent<InvSlot>().curItem.amount += invAdd.amount;
 
                     // Visuals
                     UpdateVisuals(inventories[invIndex].transform.GetChild(0).GetChild(i).gameObject, invAdd);
@@ -79,12 +68,12 @@ public class InventoryManager : MonoBehaviour
     {
         switch (dir)
         {
-            case "f":
-                transform.SetAsFirstSibling();
+            case "b":
+                GameManager.acc.UIL.invPages.transform.GetChild(0).SetAsLastSibling();
                 break;
 
-            case "b":
-                transform.SetAsLastSibling();
+            case "f":
+                GameManager.acc.UIL.invPages.transform.GetChild(GameManager.acc.UIL.invPages.transform.childCount - 1).SetAsFirstSibling();
                 break;
         }
 

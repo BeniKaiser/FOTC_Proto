@@ -67,6 +67,7 @@ public class GameLogic : MonoBehaviour
 
             case "Shop":
                 GameManager.acc.UIL.InventoryHandling(4);
+                GameManager.acc.UIL.shopOptions.SetActive(true);
                 break;
 
             case "Quest":

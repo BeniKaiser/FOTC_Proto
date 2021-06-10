@@ -110,13 +110,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
-    amount: 0
+    amount: 1
     item_name: Crop_Drop
     resource_Folder: Drop_Prefabs
-    curItem_type: Crop
+    curItem_type: 2
     refinded_Item_Name: Bread
-    refined: 0
     item_Spr: {fileID: 21300000, guid: 605ecf8d2f068794984536caebf83bfc, type: 3}
+    refined: 0
+    item_worth: 0
 --- !u!54 &-6102820291476604526
 Rigidbody:
   m_ObjectHideFlags: 0

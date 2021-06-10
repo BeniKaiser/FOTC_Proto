@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public PManager PM;
     public InputManager I;
+    public InventoryManager IM;
     public GameLogic GL;
     public UILogic UIL;
     public DayNightManager DNM;
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         acc = this;
+
+        //testing
+        GameLogic.pMoney = 100;
     }
 
     public void CursorState(CursorLockMode lockMode, bool visibility)

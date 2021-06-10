@@ -16,6 +16,7 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
     {
         if (curItem.amount > 0)
         {
+            GameManager.acc.UIL.CloseAllItemButtons();
             ButtonHandler();
         }
         else
@@ -73,13 +74,15 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
             {
                 GameLogic.pMoney += curItem.item_worth;
             }
+
+            curItem.amount = 0;
+            transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curItem.amount.ToString();
+            ResetSlotCheck();
         }
         else
             print("keep your garbage pesant");
 
-        curItem.amount = 0;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curItem.amount.ToString();
-        ResetSlotCheck();
+        
 
     }
 

@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem:
-    amount: 0
+    amount: 1
     item_name: Plank
     resource_Folder: Processed_Prefabs
-    curItem_type: 
+    curItem_type: 0
     refinded_Item_Name: 
     item_Spr: {fileID: -8377276120534325534, guid: 9d4cf4444ffe2444db8ba284177537ee, type: 3}
     refined: 1

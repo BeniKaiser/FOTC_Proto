@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UILogic : MonoBehaviour
 {
     public GameObject inventory;
+
+    [Header("Shop")]
+    public GameObject buyInventory;
+    public GameObject shopOptions;
+    public TextMeshProUGUI itemName;
+    public TextMeshProUGUI itemValue;
+
+    [Space]
     public GameObject invPages;
 
     public GameObject[] tools;
@@ -25,40 +34,46 @@ public class UILogic : MonoBehaviour
         switch (inventory.activeSelf)
         {
             case true:
-                inventory.SetActive(false);
-                GameManager.acc.curState = playerState.normal;
-                GameManager.acc.CursorState(CursorLockMode.Locked, false);
+                CloseInventory();
                 break;
 
             case false:
-                switch (invType)
+                if(buyInventory.activeSelf)
                 {
-                    case 0:
-                        GameManager.acc.curState = playerState.inInv;
-                        break;
-
-                    case 1:
-                        GameManager.acc.curState = playerState.atKitchen;
-                        invPages.transform.Find("Crops").SetAsLastSibling();
-                        break;
-
-                    case 2:
-                        GameManager.acc.curState = playerState.atSawmill;
-                        invPages.transform.Find("Wood").SetAsLastSibling();
-                        break;
-
-                    case 3:
-                        GameManager.acc.curState = playerState.atForge;
-                        invPages.transform.Find("Rocks").SetAsLastSibling();
-                        break;
-
-                    case 4:
-                        GameManager.acc.curState = playerState.inShop;
-                        break;
-
+                    CloseInventory();
                 }
-                inventory.SetActive(true);
-                GameManager.acc.CursorState(CursorLockMode.Confined, true);
+                else
+                {
+                    switch (invType)
+                    {
+                        case 0:
+                            GameManager.acc.curState = playerState.inInv;
+                            break;
+
+                        case 1:
+                            GameManager.acc.curState = playerState.atKitchen;
+                            invPages.transform.Find("Crops").SetAsLastSibling();
+                            break;
+
+                        case 2:
+                            GameManager.acc.curState = playerState.atSawmill;
+                            invPages.transform.Find("Wood").SetAsLastSibling();
+                            break;
+
+                        case 3:
+                            GameManager.acc.curState = playerState.atForge;
+                            invPages.transform.Find("Rocks").SetAsLastSibling();
+                            break;
+
+                        case 4:
+                            GameManager.acc.curState = playerState.inShop;
+                            break;
+
+                    }
+                    inventory.SetActive(true);
+                    GameManager.acc.CursorState(CursorLockMode.Confined, true);
+                }
+                
 
                 break;
         }
@@ -70,13 +85,24 @@ public class UILogic : MonoBehaviour
         switch (letterInput)
         {
             case "E":
-                invPages.transform.GetChild(0).GetComponent<InventoryManager>().FlipToPage("b");
+                GameManager.acc.IM.FlipToPage("b");
+                CloseAllItemButtons();
                 break;
 
             case "Q":
-                invPages.transform.GetChild(invPages.transform.childCount-1).GetComponent<InventoryManager>().FlipToPage("f");
+                GameManager.acc.IM.FlipToPage("f");
+                CloseAllItemButtons();
                 break;
         }
+    }
+
+    void CloseInventory()
+    {
+        ResetInventory();
+
+        inventory.SetActive(false);
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
     }
 
     public void ToolRotation(int dir) // position Steps: 130f
@@ -124,6 +150,57 @@ public class UILogic : MonoBehaviour
             else
                 tools[i].SetActive(false);
         }
+    }
+
+    public void SellItems()
+    {
+        buyInventory.SetActive(false);
+        inventory.SetActive(true);
+    }
+
+    public void BuyItems()
+    {
+        buyInventory.SetActive(true);
+        inventory.SetActive(false);
+
+        for (int i = 0; i < GameManager.acc.curObject.GetComponent<ShopInventory>().shopInv.Count; i++)
+        {
+
+            Item shopItem = GameManager.acc.curObject.GetComponent<ShopInventory>().shopInv[i];
+
+            buyInventory.transform.GetChild(0).GetChild(i).GetComponent<BuySlot>().buyItem = shopItem;
+            buyInventory.transform.GetChild(0).GetChild(i).GetComponent<Image>().sprite = shopItem.item_Spr;
+            buyInventory.transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = shopItem.amount.ToString();
+        }
+        GameManager.acc.curObject.GetComponent<ShopInventory>().shopInv.Clear();
+    }
+
+    public void CloseAllItemButtons()
+    {
+        // Close all Open InvSlot Options
+        for (int i = 0; i < invPages.transform.childCount; i++)
+        {
+            for (int ni = 0; ni < invPages.transform.GetChild(i).GetChild(0).childCount; ni++)
+            {
+                invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().CloseButtons();
+            }
+        }
+
+        // Close all Buy Slot Options
+        for (int i = 0; i < buyInventory.transform.GetChild(0).childCount; i++)
+        {
+            buyInventory.transform.GetChild(0).GetChild(i).GetComponent<BuySlot>().HandelButtons(false);
+        }
+    }
+
+    void ResetInventory()
+    {
+        CloseAllItemButtons();
+
+        //Close Shop Options
+        shopOptions.SetActive(false);
+        // Disable buyInv, enable normal inv
+        SellItems();
     }
 
 
