@@ -71,6 +71,8 @@ public class GameLogic : MonoBehaviour
                 break;
 
             case "Quest":
+                GameManager.acc.UIL.questGiver_UI.SetActive(true);
+                GameManager.acc.curState = playerState.atQuestGiver;
                 break;
         }
 

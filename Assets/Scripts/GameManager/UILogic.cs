@@ -14,6 +14,20 @@ public class UILogic : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemValue;
 
+    [Header("Quests")]
+    public GameObject questGiver_UI;
+    public GameObject questLog;
+
+    public GameObject questEntryParent;
+    public GameObject questEntry_Pre;
+    public List<Quest> activeQuests = new List<Quest>();
+
+    [Header("Quest Infos")]
+    public TextMeshProUGUI questName;
+    public TextMeshProUGUI questDescription;
+
+
+
     [Space]
     public GameObject invPages;
 
@@ -27,6 +41,56 @@ public class UILogic : MonoBehaviour
         ShowNearTools();
     }
 
+
+    #region Quests
+
+    public void QuestLogHandling()
+    {
+        switch (questLog.activeSelf)
+        {
+            case true:
+                questLog.SetActive(false);
+                GameManager.acc.curState = playerState.normal;
+                GameManager.acc.CursorState(CursorLockMode.Locked, false);
+                break;
+
+            case false:
+                questLog.SetActive(true);
+                GameManager.acc.curState = playerState.inQuestLog;
+                GameManager.acc.CursorState(CursorLockMode.Confined, true);
+                break;
+        }
+    }
+
+    public void AcceptQuest()
+    {
+
+        activeQuests.Add(GameManager.acc.curObject.GetComponent<QuestGiver>().quest);
+        GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted = true;
+        print("accepted");
+
+        GameObject g = Instantiate(questEntry_Pre, questEntryParent.transform);
+        g.GetComponent<RectTransform>().anchoredPosition = new Vector3(-300, 250 - (100 * (questEntryParent.transform.childCount - 1)), 0f);
+        g.GetComponent<QuestLogEntry>().curQuest = GameManager.acc.curObject.GetComponent<QuestGiver>().quest;
+
+        // upadate Quest Giver UI
+        questGiver_UI.SetActive(false);
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
+    }
+
+    public void DeclineQuest()
+    {
+        print("declined");
+        // Reset Quest Giver UI
+        questGiver_UI.SetActive(false);
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
+    }
+
+    #endregion
+
+    #region Inventory
 
     public void InventoryHandling(int invType) // 0 = normal, 1 = Kitchen, 2 = Sawmill, 3 = Forge
     {
@@ -203,5 +267,5 @@ public class UILogic : MonoBehaviour
         SellItems();
     }
 
-
+    #endregion
 }

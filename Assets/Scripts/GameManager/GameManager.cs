@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum playerState {normal, inInv, atKitchen, atSawmill, atForge, inShop, atQuestGiver }
+public enum playerState {normal, inInv, inQuestLog, atKitchen, atSawmill, atForge, inShop, atQuestGiver }
 public class GameManager : MonoBehaviour
 {
 
@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
 
                 break;
 
+            case playerState.inQuestLog:
+                InputToOutputInventory();
+                break;
+
             case playerState.atKitchen:
                 InputToOutputInventory();
                 break;
@@ -84,6 +88,10 @@ public class GameManager : MonoBehaviour
             case playerState.inShop:
                 InputToOutputInventory();
                 UIL.FlipDirection(I.LetterInput());
+                break;
+
+            case playerState.atQuestGiver:
+                CursorState(CursorLockMode.Confined, true);
                 break;
 
         }
@@ -116,6 +124,10 @@ public class GameManager : MonoBehaviour
             case "I":
                 UIL.InventoryHandling(0);
                 break;
+
+            case "L":
+                UIL.QuestLogHandling();
+                break;
         }
     }
 
@@ -123,11 +135,18 @@ public class GameManager : MonoBehaviour
     {
         switch (I.LetterInput())
         {
+
             case "I":
-                UIL.InventoryHandling(0);
+                if(!UIL.questLog.activeSelf)
+                    UIL.InventoryHandling(0);
+                break;
+
+            case "L":
+                if(!UIL.inventory.activeSelf)
+                    UIL.QuestLogHandling();
                 break;
         }
-            
+
     }
 
 }
