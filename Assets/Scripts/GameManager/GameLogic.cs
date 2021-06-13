@@ -72,11 +72,37 @@ public class GameLogic : MonoBehaviour
 
             case "Quest":
                 GameManager.acc.UIL.questGiver_UI.SetActive(true);
+                GameManager.acc.UIL.questGiver_UI.transform.Find("AcceptButton").gameObject.SetActive(curObject.GetComponent<QuestGiver>().quest_accepted ? false : true);
+                GameManager.acc.UIL.questGiver_UI.transform.Find("DeliverButton").gameObject.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
                 GameManager.acc.curState = playerState.atQuestGiver;
                 break;
         }
 
 
+    }
+
+    bool CheckForItem(Item item)
+    {
+        for (int i = 0; i < GameManager.acc.UIL.invPages.transform.childCount; i++)
+        {
+            for (int ni = 0; ni < GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).childCount; ni++)
+            {
+                if(GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem.amount != 0)
+                {
+                    Item plaItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem;
+                    if (item.item_name == plaItem.item_name && item.amount <= plaItem.amount && GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted)
+                    {
+                        print("itemFound");
+                        GameManager.acc.UIL.slotWithQuestItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).gameObject;
+                        GameManager.acc.UIL.questItem = item;
+
+                        return true;
+                    }
+                }
+                
+            }
+        }
+        return false;
     }
 
     void DamageRessource(GameObject curObject)

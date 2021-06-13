@@ -127,12 +127,13 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void ResetSlotCheck()
+    public void ResetSlotCheck()
     {
         if (curItem.amount == 0)
         {
             curItem = default;
             GetComponent<Image>().sprite = null;
+            transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = 0.ToString();
             CloseButtons();
         }
         

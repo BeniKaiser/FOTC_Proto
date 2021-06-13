@@ -22,6 +22,9 @@ public class UILogic : MonoBehaviour
     public GameObject questEntry_Pre;
     public List<Quest> activeQuests = new List<Quest>();
 
+    public Item questItem;
+    public GameObject slotWithQuestItem;
+
     [Header("Quest Infos")]
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
@@ -75,6 +78,27 @@ public class UILogic : MonoBehaviour
 
         // upadate Quest Giver UI
         questGiver_UI.SetActive(false);
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
+    }
+
+    public void DeliverQuest()
+    {
+        print("quest Delivered");
+        slotWithQuestItem.GetComponent<InvSlot>().curItem.amount -= questItem.amount;
+        slotWithQuestItem.GetComponent<InvSlot>().ResetSlotCheck();
+
+        GameManager.acc.curObject.GetComponent<QuestGiver>().DropRewards();
+        GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted = false;
+        for (int i = 0; i < questEntryParent.transform.childCount; i++)
+        {
+            if(questEntryParent.transform.GetChild(i).GetComponent<QuestLogEntry>().curQuest.questName == GameManager.acc.curObject.GetComponent<QuestGiver>().quest.questName)
+            {
+                Destroy(questEntryParent.transform.GetChild(i).gameObject);
+            }
+        }
+        GameManager.acc.UIL.questGiver_UI.SetActive(false);
+
         GameManager.acc.curState = playerState.normal;
         GameManager.acc.CursorState(CursorLockMode.Locked, false);
     }
