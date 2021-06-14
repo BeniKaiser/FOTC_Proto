@@ -14,6 +14,8 @@ public struct Item
     public Sprite item_Spr;
     public bool refined;
 
+    public GameObject seedItem;
+
     public int item_worth;
 
 }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class InvSlot : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject drop_btn, sell1_btn, sellAll_btn, refine_btn, exit_btn;
+    public GameObject drop_btn, sell1_btn, sellAll_btn, refine_btn, plant_btn, exit_btn;
     public GameObject[] buttons;
 
     public Item curItem;
@@ -86,6 +86,17 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
 
     }
 
+    public void PlantItem()
+    {
+        GameObject g = Instantiate(curItem.seedItem, GameManager.acc.curObject.transform.position + new Vector3(0f, .49f, 0f), Quaternion.identity);
+        g.transform.parent = GameManager.acc.curObject.transform;
+        CloseButtons();
+        GameManager.acc.UIL.inventory.SetActive(false);
+
+        //GameManager.acc.curState = playerState.
+
+    }
+
     public void CloseButtons()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -121,6 +132,11 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
             case playerState.inShop:
                 sell1_btn.SetActive(true);
                 sellAll_btn.SetActive(true);
+                exit_btn.SetActive(true);
+                break;
+
+            case playerState.atFarm:
+                plant_btn.SetActive(true);
                 exit_btn.SetActive(true);
                 break;
 

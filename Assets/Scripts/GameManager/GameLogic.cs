@@ -76,6 +76,10 @@ public class GameLogic : MonoBehaviour
                 GameManager.acc.UIL.questGiver_UI.transform.Find("DeliverButton").gameObject.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
                 GameManager.acc.curState = playerState.atQuestGiver;
                 break;
+
+            case "Farm":
+                GameManager.acc.UIL.InventoryHandling(5);
+                break;
         }
 
 

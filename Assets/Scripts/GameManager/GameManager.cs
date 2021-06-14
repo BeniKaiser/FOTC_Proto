@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum playerState {normal, inInv, inQuestLog, atKitchen, atSawmill, atForge, inShop, atQuestGiver }
+public enum playerState {normal, inInv, inQuestLog, atKitchen, atSawmill, atForge, inShop, atQuestGiver, atFarm }
 public class GameManager : MonoBehaviour
 {
 
@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case playerState.atQuestGiver:
+                CursorState(CursorLockMode.Confined, true);
+                break;
+
+            case playerState.atFarm:
                 CursorState(CursorLockMode.Confined, true);
                 break;
 

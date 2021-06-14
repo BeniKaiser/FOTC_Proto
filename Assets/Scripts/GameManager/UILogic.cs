@@ -157,6 +157,11 @@ public class UILogic : MonoBehaviour
                             GameManager.acc.curState = playerState.inShop;
                             break;
 
+                        case 5:
+                            GameManager.acc.curState = playerState.atFarm;
+                            invPages.transform.Find("Seeds").SetAsLastSibling();
+                            break;
+
                     }
                     inventory.SetActive(true);
                     GameManager.acc.CursorState(CursorLockMode.Confined, true);
