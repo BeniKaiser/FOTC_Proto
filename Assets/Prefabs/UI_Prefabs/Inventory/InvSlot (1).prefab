@@ -235,6 +235,7 @@ MonoBehaviour:
   - {fileID: 35929033105404394}
   - {fileID: 5044721332563354984}
   - {fileID: 5507949437520589999}
+  - {fileID: 6764687683514851380}
   curItem:
     amount: 0
     item_name: 

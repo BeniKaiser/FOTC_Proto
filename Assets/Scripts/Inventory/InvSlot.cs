@@ -88,12 +88,17 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
 
     public void PlantItem()
     {
+        GameManager.acc.curObject.GetComponent<FarmProperties>().occupied = true;
         GameObject g = Instantiate(curItem.seedItem, GameManager.acc.curObject.transform.position + new Vector3(0f, .49f, 0f), Quaternion.identity);
         g.transform.parent = GameManager.acc.curObject.transform;
         CloseButtons();
         GameManager.acc.UIL.inventory.SetActive(false);
+        curItem.amount--;
 
-        //GameManager.acc.curState = playerState.
+        ResetSlotCheck();
+
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
 
     }
 

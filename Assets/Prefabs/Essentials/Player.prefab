@@ -2017,7 +2017,7 @@ GameObject:
   - component: {fileID: 1075431662}
   m_Layer: 5
   m_Name: Tool (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2062,14 +2062,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.13519046, b: 0.13519046, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6232742816020895870, guid: ad50c0a8732fa7848ac8788bdd6df5d4, type: 3}
+  m_Sprite: {fileID: -3863249275090198133, guid: ddd1245d92b80f248a8a713aa833f917, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2920,7 +2920,7 @@ GameObject:
   - component: {fileID: 1442029023}
   m_Layer: 5
   m_Name: Tool (5)
-  m_TagString: Untagged
+  m_TagString: Farm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2965,14 +2965,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.13519046, b: 0.13519046, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6232742816020895870, guid: ad50c0a8732fa7848ac8788bdd6df5d4, type: 3}
+  m_Sprite: {fileID: -2908873594443307474, guid: ddd1245d92b80f248a8a713aa833f917, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

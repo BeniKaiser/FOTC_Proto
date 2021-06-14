@@ -15,6 +15,7 @@ TagManager:
   - Shop
   - Quest
   - Farm
+  - Ground
   layers:
   - Default
   - TransparentFX

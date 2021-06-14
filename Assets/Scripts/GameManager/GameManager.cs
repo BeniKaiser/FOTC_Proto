@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case playerState.atFarm:
+                InputToOutputInventory();
                 CursorState(CursorLockMode.Confined, true);
                 break;
 

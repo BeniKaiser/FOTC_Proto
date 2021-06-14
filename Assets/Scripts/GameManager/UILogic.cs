@@ -85,8 +85,9 @@ public class UILogic : MonoBehaviour
     public void DeliverQuest()
     {
         print("quest Delivered");
-        slotWithQuestItem.GetComponent<InvSlot>().curItem.amount -= questItem.amount;
-        slotWithQuestItem.GetComponent<InvSlot>().ResetSlotCheck();
+
+        GameManager.acc.GL.slotWithItem.GetComponent<InvSlot>().curItem.amount -= questItem.amount;
+        GameManager.acc.GL.slotWithItem.GetComponent<InvSlot>().ResetSlotCheck();
 
         GameManager.acc.curObject.GetComponent<QuestGiver>().DropRewards();
         GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted = false;

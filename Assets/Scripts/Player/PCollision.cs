@@ -9,7 +9,7 @@ public class PCollision : MonoBehaviour
     public TextMeshProUGUI facingObject_text;
     public float rayLength;
 
-    RaycastHit hit;
+    public RaycastHit hit;
 
     public GameObject CurrentObject()
     {

@@ -12,6 +12,14 @@ public class GameLogic : MonoBehaviour
     public static int pMoney;
     public TextMeshProUGUI pMoney_txt;
 
+    [Header("Farm Stuff")]
+    public LayerMask farm_Msk;
+    public GameObject farm;
+    public float maxDigDistance;
+    public Item resourceCost;
+
+    public GameObject slotWithItem;
+
     public void CollectObject(GameObject curObject)
     {
         switch (curObject.tag)
@@ -78,7 +86,48 @@ public class GameLogic : MonoBehaviour
                 break;
 
             case "Farm":
-                GameManager.acc.UIL.InventoryHandling(5);
+                if(!curObject.GetComponent<FarmProperties>().occupied)
+                    GameManager.acc.UIL.InventoryHandling(5);
+                else
+                {
+                    if(GameManager.acc.UIL.tools[GameManager.acc.UIL.midIndex].CompareTag(curObject.tag))
+                    {
+                        //set material to watered Farm
+                        curObject.GetComponent<FarmProperties>().watered = true;
+                        curObject.GetComponent<MeshRenderer>().material = curObject.GetComponent<FarmProperties>().wateredFarm;
+                    }
+                }
+                break;
+
+            case "Ground":
+                if (GameManager.acc.UIL.tools[GameManager.acc.UIL.midIndex].CompareTag(curObject.tag))
+                {
+                    //Check for Resources
+                    if(CheckForItem(resourceCost))
+                    {
+                        //Check if other farm is too close
+                        if (!Physics.CheckSphere(GameManager.acc.PM.Col.hit.point, .5f, farm_Msk))
+                        {
+                            slotWithItem.GetComponent<InvSlot>().curItem.amount -= resourceCost.amount;
+                            slotWithItem.GetComponent<InvSlot>().ResetSlotCheck();
+
+
+                            // Dig out Farm
+                            if (Vector3.Distance(PManager.player.transform.position, GameManager.acc.PM.Col.hit.point) < maxDigDistance)
+                            {
+                                GameObject g = Instantiate(farm, GameManager.acc.PM.Col.hit.point - new Vector3(0f, .4f, 0f), PManager.player.transform.rotation);
+                                g.transform.parent = activeFields.transform;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("not Enough Resources");
+                    }
+                    
+
+                }
                 break;
         }
 
@@ -94,11 +143,23 @@ public class GameLogic : MonoBehaviour
                 if(GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem.amount != 0)
                 {
                     Item plaItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem;
-                    if (item.item_name == plaItem.item_name && item.amount <= plaItem.amount && GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted)
+                    if (item.item_name == plaItem.item_name && item.amount <= plaItem.amount)
                     {
                         print("itemFound");
-                        GameManager.acc.UIL.slotWithQuestItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).gameObject;
-                        GameManager.acc.UIL.questItem = item;
+                        slotWithItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).gameObject;
+                        if(GameManager.acc.curObject.CompareTag("Quest"))
+                        {
+                            if(GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted)
+                            {
+                                GameManager.acc.UIL.questItem = item;
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                            
 
                         return true;
                     }
@@ -148,22 +209,33 @@ public class GameLogic : MonoBehaviour
         {
             if(activeFields.transform.GetChild(i).childCount > 0)
             {
+                
                 if(!activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe)
                 {
-                    activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay++;
-
-                    // CropVisuals
-                    activeFields.transform.GetChild(i).GetChild(0).localScale =
-                        new Vector3(.5f, (2f / activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().daysToMature) * 
-                        activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay, .5f);
-
-                    if (activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay ==
-                        activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().daysToMature)
+                    if(activeFields.transform.GetChild(i).GetComponent<FarmProperties>().watered)
                     {
-                        activeFields.transform.GetChild(i).GetChild(0).GetComponent<MeshRenderer>().material =
-                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe_Mat;
-                        activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe = true;
+                        activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay++;
+
+                        // CropVisuals
+                        activeFields.transform.GetChild(i).GetChild(0).localScale =
+                            new Vector3(.5f, (2f / activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().daysToMature) *
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay, .5f);
+
+                        if (activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay ==
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().daysToMature)
+                        {
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<MeshRenderer>().material =
+                                activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe_Mat;
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe = true;
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<BoxCollider>().enabled = true;
+
+
+                        }
+                        // set field material to dry
+                        activeFields.transform.GetChild(i).GetComponent<FarmProperties>().watered = false;
+                        activeFields.transform.GetChild(i).GetComponent<MeshRenderer>().material = activeFields.transform.GetChild(i).GetComponent<FarmProperties>().dryFarm;
                     }
+                    
                 }
                 
             }
