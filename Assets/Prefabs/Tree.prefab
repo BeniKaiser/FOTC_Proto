@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 985684172851434049}
   - component: {fileID: 5735441251319153743}
   - component: {fileID: 3394735553769774192}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: d_TreeLeafs_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4998820416061398905}
   - component: {fileID: 7615152662710760037}
   - component: {fileID: 4175069794030299107}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: d_TreeLeafs_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1371383518951553771}
   - component: {fileID: 8543983488912941557}
   - component: {fileID: 341363863897719423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: d_TreeLeafs_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 6895498578627993860}
   - component: {fileID: 8365584619351268519}
   - component: {fileID: 4341674567842445574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: d_TreeLeafs_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 6576315126626494377}
   - component: {fileID: 5733737336748832687}
   - component: {fileID: 6501837198395508100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: d_TreeLeafs_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,9 +416,9 @@ GameObject:
   - component: {fileID: 3158939316568204029}
   - component: {fileID: 5380839983216610027}
   - component: {fileID: 8447028587255082835}
-  - component: {fileID: 8266972492951288576}
   - component: {fileID: 164689849}
-  m_Layer: 0
+  - component: {fileID: 8172988883689719981}
+  m_Layer: 7
   m_Name: Tree
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -493,20 +493,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8266972492951288576
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8266972492951288590}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1036059908772667488, guid: b0c2d565ee12fcb4d8e7ab0eab787d13, type: 3}
 --- !u!114 &164689849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,3 +507,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drop: {fileID: 7316358258924259472, guid: d8ff41df19ed61f4b8dfcc948c312548, type: 3}
   durability: 2
+--- !u!65 &8172988883689719981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266972492951288590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 24.249804, y: 163.71529, z: 22.15221}
+  m_Center: {x: -5.782824, y: 10.325639, z: -3.9070172}

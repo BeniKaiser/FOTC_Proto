@@ -8,6 +8,8 @@ public class UILogic : MonoBehaviour
 {
     public GameObject inventory;
 
+    public TextMeshProUGUI itemName_text;
+
     [Header("Shop")]
     public GameObject buyInventory;
     public GameObject shopOptions;

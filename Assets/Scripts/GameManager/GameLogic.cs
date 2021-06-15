@@ -224,7 +224,7 @@ public class GameLogic : MonoBehaviour
                         if (activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().curDay ==
                             activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().daysToMature)
                         {
-                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<MeshRenderer>().material =
+                            activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().mesh.material =
                                 activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe_Mat;
                             activeFields.transform.GetChild(i).GetChild(0).GetComponent<CropProperties>().ripe = true;
                             activeFields.transform.GetChild(i).GetChild(0).GetComponent<BoxCollider>().enabled = true;

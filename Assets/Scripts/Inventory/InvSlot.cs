@@ -10,12 +10,16 @@ public class InvSlot : MonoBehaviour, IPointerClickHandler
     public GameObject drop_btn, sell1_btn, sellAll_btn, refine_btn, plant_btn, exit_btn;
     public GameObject[] buttons;
 
+
+
     public Item curItem;
 
     public void OnPointerClick(PointerEventData pointer)
     {
         if (curItem.amount > 0)
         {
+            GameManager.acc.UIL.itemName_text.text = curItem.item_name;
+
             GameManager.acc.UIL.CloseAllItemButtons();
             ButtonHandler();
         }

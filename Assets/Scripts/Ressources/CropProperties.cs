@@ -9,6 +9,8 @@ public class CropProperties : MonoBehaviour
     public int daysToMature;
     public int curDay;
 
+    public MeshRenderer mesh;
+
     public Material growing_Mat, ripe_Mat;
 
 }

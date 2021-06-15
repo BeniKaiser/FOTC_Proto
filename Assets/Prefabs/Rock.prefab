@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 618697562205402307}
   - component: {fileID: 8467234569448283163}
   - component: {fileID: 1629049719812801242}
-  - component: {fileID: 2756794356902663180}
   - component: {fileID: 202005505}
-  m_Layer: 0
+  - component: {fileID: 7373168609231382277}
+  m_Layer: 7
   m_Name: Rock
   m_TagString: Stone
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2756794356902663180
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756794356902663178}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1655681617800098922, guid: b0c2d565ee12fcb4d8e7ab0eab787d13, type: 3}
 --- !u!114 &202005505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +97,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drop: {fileID: 6933380050010674942, guid: 6d29651f4e030b14eba0062234cee995, type: 3}
   durability: 3
+--- !u!65 &7373168609231382277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756794356902663178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 432.12024, y: 375.81726, z: 335.9519}
+  m_Center: {x: 1.3341691, y: 0, z: 1.9913015}
