@@ -115,8 +115,9 @@ MonoBehaviour:
     resource_Folder: Drop_Prefabs
     curItem_type: 1
     refinded_Item_Name: Iron
-    item_Spr: {fileID: 21300000, guid: 2b9737682e083644fa86f5a61f863e1e, type: 3}
+    item_Spr: {fileID: -1555048745898646385, guid: 957ba58c738306545b44d05baa9afe71, type: 3}
     refined: 0
+    seedItem: {fileID: 0}
     item_worth: 0
 --- !u!54 &828619996622117979
 Rigidbody:

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1585474114398711009}
   - component: {fileID: -6102820291476604526}
   m_Layer: 0
-  m_Name: SunFlower_Drop
+  m_Name: Sunflower_Drop
   m_TagString: Crop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
     resource_Folder: Drop_Prefabs
     curItem_type: 2
     refinded_Item_Name: SunflowerBread
-    item_Spr: {fileID: 21300000, guid: 605ecf8d2f068794984536caebf83bfc, type: 3}
+    item_Spr: {fileID: 3048937005348815756, guid: 3f3852f7a45187c4bbd9d1512258873b, type: 3}
     refined: 0
     seedItem: {fileID: 0}
     item_worth: 0

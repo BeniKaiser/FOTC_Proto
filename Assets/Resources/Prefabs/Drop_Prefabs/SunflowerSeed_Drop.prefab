@@ -115,7 +115,7 @@ MonoBehaviour:
     resource_Folder: Drop_Prefabs
     curItem_type: 3
     refinded_Item_Name: 
-    item_Spr: {fileID: 21300000, guid: 30d7294fc3e4a6a45a6162da0a606cee, type: 3}
+    item_Spr: {fileID: 767958276105571311, guid: e03b2c50a2b7fb048aefe345b7560932, type: 3}
     refined: 0
     seedItem: {fileID: 2115986287991289757, guid: f32b8771973dfc84f9387d24ee293676, type: 3}
     item_worth: 0

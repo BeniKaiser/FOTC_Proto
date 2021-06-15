@@ -80,8 +80,13 @@ public class GameLogic : MonoBehaviour
 
             case "Quest":
                 GameManager.acc.UIL.questGiver_UI.SetActive(true);
-                GameManager.acc.UIL.questGiver_UI.transform.Find("AcceptButton").gameObject.SetActive(curObject.GetComponent<QuestGiver>().quest_accepted ? false : true);
-                GameManager.acc.UIL.questGiver_UI.transform.Find("DeliverButton").gameObject.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
+                if(curObject.GetComponent<QuestGiver>().quest_accepted)
+                {
+                    GameManager.acc.UIL.questGiver_UI.transform.Find("AcceptButton").gameObject.SetActive(false);
+                    GameManager.acc.UIL.questGiver_UI.transform.Find("DeliverButton").gameObject.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
+                }
+                
+                
                 GameManager.acc.curState = playerState.atQuestGiver;
                 break;
 
@@ -136,6 +141,7 @@ public class GameLogic : MonoBehaviour
 
     bool CheckForItem(Item item)
     {
+        print("checking");
         for (int i = 0; i < GameManager.acc.UIL.invPages.transform.childCount; i++)
         {
             for (int ni = 0; ni < GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).childCount; ni++)
@@ -143,22 +149,21 @@ public class GameLogic : MonoBehaviour
                 if(GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem.amount != 0)
                 {
                     Item plaItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).GetComponent<InvSlot>().curItem;
-                    if (item.item_name == plaItem.item_name && item.amount <= plaItem.amount)
+                    if (item.item_name == plaItem.item_name) // && item.amount <= plaItem.amount
                     {
                         print("itemFound");
                         slotWithItem = GameManager.acc.UIL.invPages.transform.GetChild(i).GetChild(0).GetChild(ni).gameObject;
-                        if(GameManager.acc.curObject.CompareTag("Quest"))
+                        if (GameManager.acc.curObject.CompareTag("Quest"))
                         {
-                            if(GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted)
+                            if (GameManager.acc.curObject.GetComponent<QuestGiver>().quest_accepted)
                             {
                                 GameManager.acc.UIL.questItem = item;
                                 return true;
                             }
-                            else
-                            {
-                                return false;
-                            }
+
                         }
+                        else
+                            Debug.LogWarning("ItemNotFound");
                             
 
                         return true;

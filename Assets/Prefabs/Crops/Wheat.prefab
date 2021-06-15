@@ -126,5 +126,6 @@ MonoBehaviour:
   ripe: 0
   daysToMature: 5
   curDay: 0
+  mesh: {fileID: 3709785498078552928}
   growing_Mat: {fileID: 2100000, guid: c40bb5cf9652e5a45bbb049d002e8833, type: 2}
   ripe_Mat: {fileID: 2100000, guid: 5703c49b4e7a7af4c92f2978ab2a0da6, type: 2}
