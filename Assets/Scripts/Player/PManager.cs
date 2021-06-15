@@ -5,10 +5,12 @@ using UnityEngine;
 public class PManager : MonoBehaviour
 {
     public static GameObject player;
+    public static PManager acc;
 
     private void Awake()
     {
         player = gameObject;
+        acc = this;
     }
 
     public PMove Move;

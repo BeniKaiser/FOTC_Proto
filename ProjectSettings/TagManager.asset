@@ -16,6 +16,7 @@ TagManager:
   - Quest
   - Farm
   - Ground
+  - Balloon
   layers:
   - Default
   - TransparentFX

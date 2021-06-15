@@ -30,6 +30,17 @@ public class PCollision : MonoBehaviour
             GameManager.acc.GL.CollectObject(col.gameObject);
             Destroy(col.gameObject);
         }
+        
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Balloon"))
+        {
+            GameManager.acc.curState = playerState.inMap;
+            PManager.acc.rb.velocity = Vector3.zero;
+            GameManager.acc.UIL.balloonCanvas.SetActive(true);
+        }
     }
 
     private void OnDrawGizmos()

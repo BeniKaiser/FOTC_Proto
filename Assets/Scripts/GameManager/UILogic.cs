@@ -31,6 +31,9 @@ public class UILogic : MonoBehaviour
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
 
+    [Header("Balloon")]
+    public GameObject balloonCanvas;
+
 
 
     [Space]
@@ -300,4 +303,11 @@ public class UILogic : MonoBehaviour
     }
 
     #endregion
+
+    public void ExitMap()
+    {
+        balloonCanvas.SetActive(false);
+        GameManager.acc.curState = playerState.normal;
+        GameManager.acc.CursorState(CursorLockMode.Locked, false);
+    }
 }

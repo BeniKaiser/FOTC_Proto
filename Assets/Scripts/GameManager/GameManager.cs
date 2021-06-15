@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum playerState {normal, inInv, inQuestLog, atKitchen, atSawmill, atForge, inShop, atQuestGiver, atFarm }
+public enum playerState {normal, inInv, inQuestLog, atKitchen, atSawmill, atForge, inShop, atQuestGiver, atFarm, inMap }
 public class GameManager : MonoBehaviour
 {
 
@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour
 
             case playerState.atFarm:
                 InputToOutputInventory();
+                CursorState(CursorLockMode.Confined, true);
+                break;
+
+            case playerState.inMap:
                 CursorState(CursorLockMode.Confined, true);
                 break;
 
