@@ -19,6 +19,7 @@ public class UILogic : MonoBehaviour
     [Header("Quests")]
     public GameObject questGiver_UI;
     public GameObject questLog;
+    public GameObject deliver_Btn;
 
     public GameObject questEntryParent;
     public GameObject questEntry_Pre;
@@ -101,6 +102,7 @@ public class UILogic : MonoBehaviour
             if(questEntryParent.transform.GetChild(i).GetComponent<QuestLogEntry>().curQuest.questName == GameManager.acc.curObject.GetComponent<QuestGiver>().quest.questName)
             {
                 Destroy(questEntryParent.transform.GetChild(i).gameObject);
+                deliver_Btn.SetActive(false);
             }
         }
         GameManager.acc.UIL.questGiver_UI.SetActive(false);

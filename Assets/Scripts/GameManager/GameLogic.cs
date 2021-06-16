@@ -80,10 +80,12 @@ public class GameLogic : MonoBehaviour
 
             case "Quest":
                 GameManager.acc.UIL.questGiver_UI.SetActive(true);
-                if(curObject.GetComponent<QuestGiver>().quest_accepted)
+                GameManager.acc.UIL.questGiver_UI.transform.Find("AcceptButton").gameObject.SetActive(curObject.GetComponent<QuestGiver>().quest_accepted ? false : true);
+
+                if (curObject.GetComponent<QuestGiver>().quest_accepted)
                 {
-                    GameManager.acc.UIL.questGiver_UI.transform.Find("AcceptButton").gameObject.SetActive(false);
-                    GameManager.acc.UIL.questGiver_UI.transform.Find("DeliverButton").gameObject.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
+                    
+                    GameManager.acc.UIL.deliver_Btn.SetActive(CheckForItem(curObject.GetComponent<QuestGiver>().requiredItem) ? true : false);
                 }
                 
                 
