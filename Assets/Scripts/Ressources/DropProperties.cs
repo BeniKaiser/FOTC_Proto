@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DropProperties : MonoBehaviour
 {
+
     public Item dropItem;
 
 }
