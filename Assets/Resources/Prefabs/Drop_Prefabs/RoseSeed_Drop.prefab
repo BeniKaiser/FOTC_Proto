@@ -117,7 +117,7 @@ MonoBehaviour:
     refinded_Item_Name: 
     item_Spr: {fileID: 4480538598219858491, guid: e03b2c50a2b7fb048aefe345b7560932, type: 3}
     refined: 0
-    seedItem: {fileID: 8532319160657267704, guid: b550d1d76351dda45b8fe6951cf6f8b5, type: 3}
+    seedItem: {fileID: 8532319160657267704, guid: 6ca9dcef3ba8fd442a2a16c14fd8bfeb, type: 3}
     item_worth: 0
 --- !u!54 &3865471942562112191
 Rigidbody:
